@@ -1,0 +1,1 @@
+URL_DB_FIREBASE = 'https://dbtt-1d7b5-default-rtdb.firebaseio.com/'
