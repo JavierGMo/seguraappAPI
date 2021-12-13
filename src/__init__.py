@@ -16,8 +16,10 @@ def create_app(settingsModule):
    #Solo esta la ruta de home
    from .routes.home import homeBP
    from .routes.report import reportBP
+   from .routes.user import userBP
 
    app.register_blueprint(homeBP)
    app.register_blueprint(reportBP)
+   app.register_blueprint(userBP)
 
    return app
