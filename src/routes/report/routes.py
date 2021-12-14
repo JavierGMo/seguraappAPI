@@ -12,7 +12,43 @@ def getReports():
         requestDBFireBase = requests.get(
             f'{URL_DB_FIREBASE}reporte.json',
         )
+        if requestDBFireBase.status_code != 200:
+            return current_app.response_class(
+                response=json.dumps({'message': 'error', 'ok': False}),
+                status=requestDBFireBase.status_code,
+                mimetype='application/json'
+            )
+        data = requestDBFireBase.json()
         
+        return current_app.response_class(
+            response=json.dumps({
+                'message': 'success',
+                'ok': True,
+                'data': data
+            }),
+            status=200,
+            mimetype='application/json'
+        )
+    except:
+        return current_app.response_class(
+            response=json.dumps({'message': 'error', 'ok': False}),
+            status=500,
+            mimetype='application/json'
+        )
+
+@reportBP.route("/report/<idreport>")
+def getReport(idreport: str):
+    
+    try:
+        requestDBFireBase = requests.get(
+            f'{URL_DB_FIREBASE}reporte/{idreport}.json',
+        )
+        if requestDBFireBase.status_code != 200:
+            return current_app.response_class(
+                response=json.dumps({'message': 'error', 'ok': False}),
+                status=requestDBFireBase.status_code,
+                mimetype='application/json'
+            )
         data = requestDBFireBase.json()
         
         return current_app.response_class(
