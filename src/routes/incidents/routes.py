@@ -42,7 +42,7 @@ def getIncidentes():
 @incidentBP.route('/incidentes/<idincident>')
 def getIncidente(idincident: str):
     try:
-        requestDBFireBase = requests.get(f'{URL_DB_FIREBASE}incidentes/idincident.json')
+        requestDBFireBase = requests.get(f'{URL_DB_FIREBASE}incidentes/{idincident}.json')
         if requestDBFireBase.status_code != 200:
             return current_app.response_class(
                 response=json.dumps({
