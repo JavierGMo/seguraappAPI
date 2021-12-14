@@ -1,6 +1,7 @@
 from flask import current_app, json, request
 from src.consts.firebase import URL_DB_FIREBASE
 from . import incidentBP
+import json as jsonparse
 
 import requests
 
@@ -19,6 +20,17 @@ def getIncidentes():
             )
         
         data = requestDBFireBase.json()
+        listData = []
+        print('data****',type(data))
+
+        for key in data:
+            listData.append({
+                'refImg': '',
+                'titleIncident': data[key]['titulo'],
+                'descriptionIncident': data[key]['descripcion'],
+            })
+
+        print(listData)
         
         return current_app.response_class(
             response=json.dumps({
@@ -81,7 +93,7 @@ def createIncidente():
         descripcion = request.json['descripcion']
         tipo = request.json['tipo']
         body = {
-            "titlo": titulo,
+            "titulo": titulo,
             "descripcion": descripcion,
             "tipo": tipo
         }
