@@ -18,10 +18,12 @@ def create_app(settingsModule):
    from .routes.report import reportBP
    from .routes.user import userBP
    from .routes.incidents import incidentBP
+   from .routes.zoneincidents import zoneIncidentsBP
 
    app.register_blueprint(homeBP)
    app.register_blueprint(reportBP)
    app.register_blueprint(userBP)
    app.register_blueprint(incidentBP)
+   app.register_blueprint(zoneIncidentsBP)
 
    return app
